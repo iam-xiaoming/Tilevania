@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ladder
+  - Water
+  - UI
+  - Ground
+  - Player
+  - Background
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 4023496645
+    locked: 0
+  - name: Water
+    uniqueID: 2317489663
+    locked: 0
+  - name: FlatForm
+    uniqueID: 3114447969
+    locked: 0
+  - name: Ladder
+    uniqueID: 4175836143
+    locked: 0
+  - name: Player
+    uniqueID: 1312645625
+    locked: 0
+  m_RenderingLayers:
+  - Default
