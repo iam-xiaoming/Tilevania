@@ -23,20 +23,28 @@ public class PlayerMovement : MonoBehaviour
     #region Components
     Rigidbody2D playerRigidbody;
     Animator playerAnimator;
-    CapsuleCollider2D capsuleCollider2D;
+    CapsuleCollider2D myBodyCollider2D;
+    BoxCollider2D myFeetCollider2D;
+    PlayerMortality playerMortality;
     #endregion
 
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        myBodyCollider2D = GetComponent<CapsuleCollider2D>();
+        myFeetCollider2D = GetComponent<BoxCollider2D>();
+        playerMortality = GetComponent<PlayerMortality>();
         gravityScaleAtStart = playerRigidbody.gravityScale;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Die();
+
+        if (!playerMortality.IsAlive) { return; }
+
         Run();
         Flip();
         SetJumpState();
@@ -46,8 +54,7 @@ public class PlayerMovement : MonoBehaviour
     void SetJumpState()
     {
         //  If player touches ground, set jumpCount = 0.
-        bool isTouchingGround = playerRigidbody.IsTouchingLayers(LayerMask.GetMask("Ground"));
-        bool isTouchingLadder = playerRigidbody.IsTouchingLayers(LayerMask.GetMask("Ladder"));
+        bool isTouchingGround = myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
         
         if (isTouchingGround)
         {
@@ -67,11 +74,14 @@ public class PlayerMovement : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        if (!playerMortality.IsAlive) { return; }
         moveInput = value.Get<Vector2>();
     }
 
     void OnJump(InputValue value)
     {
+        if (!playerMortality.IsAlive) { return; }
+
         // If jumpCount exceed maxJumps, do not do anything. We minus 1 because OnJump run before Update.
         if (jumpCount >= maxJumps - 1) { return; }
 
@@ -92,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.linearVelocityX = moveInput.x * runSpeed;
         
 
-        if (playerHasVelocity && playerRigidbody.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        if (playerHasVelocity && myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
         {
             playerAnimator.SetBool("isRunning", true);
         }
@@ -113,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ClimbLadder()
     {
-        bool isTouchingLadder = capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder"));
+        bool isTouchingLadder = myBodyCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder"));
         
         // When the player doesn't touch the ladder or has jumped when laddering, then set every parameters to default.
         if (!isTouchingLadder || hasJumped)
@@ -126,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        bool isTouchingGround = capsuleCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        bool isTouchingGround = myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
         
         // If velocity > epsilon, means the player is climbing, otherwise.
         bool hasClimbingVelocity = Mathf.Abs(playerRigidbody.linearVelocityY) > Mathf.Epsilon;
@@ -150,6 +160,14 @@ public class PlayerMovement : MonoBehaviour
         {
             // If touch ground, we stop playing climbing animation.
             playerAnimator.SetBool("isClimbing", false);
+        }
+    }
+
+    void Die()
+    {
+        if (!playerMortality.IsAlive)
+        {
+            playerAnimator.SetTrigger("isDead");
         }
     }
 } 

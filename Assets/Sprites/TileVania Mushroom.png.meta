@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: de9f62f6f536a1b4a8e610b1cab53d09
+guid: a49f65e5060f2be4089494cc7b482694
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -2598553690568428489
+    second: TileVania Mushroom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,27 +96,51 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: TileVania Mushroom_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 6, y: -1}
+        - {x: 14, y: -1}
+        - {x: 15, y: 1}
+        - {x: 15, y: 6}
+        - {x: 12, y: 10}
+        - {x: 10, y: 12}
+        - {x: 7, y: 14}
+        - {x: -8, y: 14}
+        - {x: -13, y: 10}
+        - {x: -15, y: 6}
+        - {x: -15, y: 1}
+        - {x: -14, y: -1}
+        - {x: -6, y: -1}
+        - {x: -6, y: -15}
+        - {x: 6, y: -15}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73473e7af2510fbd0800000000000000
+      internalID: -2598553690568428489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ff0da15e4d5483f498d8d70896ccbfcd
     internalID: 0
     vertices: []
     indices: 
@@ -122,7 +149,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TileVania Mushroom_0: -2598553690568428489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
