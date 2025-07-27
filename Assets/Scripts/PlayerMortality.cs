@@ -40,7 +40,10 @@ public class PlayerMortality : MonoBehaviour
     // This method called before Update method.
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (isAlive && other.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        bool isTouchEnemies = other.gameObject.layer == LayerMask.NameToLayer("Enemies");
+        bool isTouchHazard = other.gameObject.layer == LayerMask.NameToLayer("Hazard");
+
+        if (isAlive && (isTouchEnemies || isTouchHazard))
         {
             isAlive = false;
             PhysicsMaterial2D deadMaterial = new PhysicsMaterial2D()
@@ -52,7 +55,7 @@ public class PlayerMortality : MonoBehaviour
             myRigidbody2D.sharedMaterial = deadMaterial;
             myRigidbody2D.linearVelocityY = deadKickSpeed;
         }
-        else if (!isAlive && other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if (!isAlive)
         {
             bounced = true;
         }

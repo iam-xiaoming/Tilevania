@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpSpeed = 10f;
     [SerializeField] float climbSpeed = 5f;
     [SerializeField] int maxJumps = 2;
+    [SerializeField] CompositeCollider2D waterCollider;
+    [SerializeField] float underWaterSpeed = 2f;
+    [SerializeField] TimeCounter timeOnWaterCounter;
     #endregion
 
     #region State Tracking
@@ -17,7 +20,9 @@ public class PlayerMovement : MonoBehaviour
     bool playerHasVelocity = false;
     bool isClimbing = false; // This variable is used to determine the whether player holding the ladder when falling down, see "ClimbLadder()" method.
     Vector2 moveInput; // This variable is used to get which direction of player, eg. (-1, 0)...
+    Vector2 preMoveInput;
     bool hasJumped = false; // This variable is used for jumping while laddering.
+    bool isUnderTheWaterState = false;
     #endregion
 
     #region Components
@@ -55,8 +60,9 @@ public class PlayerMovement : MonoBehaviour
     {
         //  If player touches ground, set jumpCount = 0.
         bool isTouchingGround = myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        bool isTouchingWater = myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Water"));
         
-        if (isTouchingGround)
+        if (isTouchingGround || isTouchingWater)
         {
             playerAnimator.SetBool("isFlying", false);
             jumpCount = 0;
@@ -75,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         if (!playerMortality.IsAlive) { return; }
+        preMoveInput = moveInput;
         moveInput = value.Get<Vector2>();
     }
 
@@ -97,12 +104,53 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            isUnderTheWaterState = false;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        {
+            isUnderTheWaterState = true;
+        }
+    }
+
     void Run()
     {
-        playerRigidbody.linearVelocityX = moveInput.x * runSpeed;
-        
+        if (isUnderTheWaterState)
+        {
+            playerRigidbody.linearVelocityX = moveInput.x * underWaterSpeed;
+            playerAnimator.speed = 0.5f;
+        }
+        else if (myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Water")))
+        {
+            playerRigidbody.linearVelocityX = moveInput.x * (runSpeed - 2);
+            bool isVelocity = Mathf.Abs(playerRigidbody.linearVelocityX) > 0;
 
-        if (playerHasVelocity && myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
+            if (isVelocity) { timeOnWaterCounter.Reset(); }
+
+            if (timeOnWaterCounter.GetInterval() < 0.2f)
+            {
+                waterCollider.isTrigger = false;
+                playerAnimator.speed = 1.5f;
+            }
+            else
+            {
+                waterCollider.isTrigger = true;
+            }
+        }
+        else
+        {
+            playerRigidbody.linearVelocityX = moveInput.x * runSpeed;
+            playerAnimator.speed = 1f;
+        }
+
+        if (playerHasVelocity && (myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) || myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Water"))))
         {
             playerAnimator.SetBool("isRunning", true);
         }
