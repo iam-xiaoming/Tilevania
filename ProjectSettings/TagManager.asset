@@ -17,7 +17,7 @@ TagManager:
   - Bouncing
   - Enemies
   - Hazard
-  - 
+  - Arrow
   - 
   - 
   - 
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1312645625
+    locked: 0
+  - name: Arrow
+    uniqueID: 1583343207
     locked: 0
   m_RenderingLayers:
   - Default

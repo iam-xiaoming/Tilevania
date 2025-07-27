@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     bool playerHasVelocity = false;
     bool isClimbing = false; // This variable is used to determine the whether player holding the ladder when falling down, see "ClimbLadder()" method.
     Vector2 moveInput; // This variable is used to get which direction of player, eg. (-1, 0)...
-    Vector2 preMoveInput;
     bool hasJumped = false; // This variable is used for jumping while laddering.
     bool isUnderTheWaterState = false;
     #endregion
@@ -50,10 +49,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (!playerMortality.IsAlive) { return; }
 
+        CheckPlyingState();
         Run();
         Flip();
-        SetJumpState();
         ClimbLadder();
+    }
+
+    void CheckPlyingState()
+    {
+        if (myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")) || myBodyCollider2D.IsTouchingLayers(LayerMask.GetMask("Ladder")) || myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Water")))
+        {
+            playerAnimator.SetBool("isFlying", false);
+        }
     }
 
     void SetJumpState()
@@ -62,7 +69,12 @@ public class PlayerMovement : MonoBehaviour
         bool isTouchingGround = myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground"));
         bool isTouchingWater = myFeetCollider2D.IsTouchingLayers(LayerMask.GetMask("Water"));
         
-        if (isTouchingGround || isTouchingWater)
+        if (isUnderTheWaterState)
+        {
+            playerAnimator.SetBool("isFlying", true);
+            jumpCount = maxJumps - 1;
+        }
+        else if (isTouchingGround || isTouchingWater)
         {
             playerAnimator.SetBool("isFlying", false);
             jumpCount = 0;
@@ -74,14 +86,13 @@ public class PlayerMovement : MonoBehaviour
         else if (isClimbing)
         {
             playerAnimator.SetBool("isFlying", false);
-            jumpCount = maxJumps - 2; // If player is climbing, set jumpCount = maxJumps - 2. Actually -1, but because OnJump run before Update. This expression just allows jump once when climbing ladder.
+            jumpCount = maxJumps - 1; // If player is climbing, set jumpCount = maxJumps - 1. This expression just allows jump once when climbing ladder.
         }
     }
 
     void OnMove(InputValue value)
     {
         if (!playerMortality.IsAlive) { return; }
-        preMoveInput = moveInput;
         moveInput = value.Get<Vector2>();
     }
 
@@ -89,8 +100,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!playerMortality.IsAlive) { return; }
 
+        SetJumpState();
+
         // If jumpCount exceed maxJumps, do not do anything. We minus 1 because OnJump run before Update.
-        if (jumpCount >= maxJumps - 1) { return; }
+        if (jumpCount >= maxJumps)
+        {
+            return;
+        }
 
         if (value.isPressed)
         {
@@ -217,5 +233,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAnimator.SetTrigger("isDead");
         }
+    }
+
+    public Vector3 GetLocalScale()
+    {
+        return gameObject.transform.localScale;
     }
 } 
