@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 99370fa0cf1ac0c47b8f2c79f2d42dd8
+guid: e8c3c70595e8e3e4782a4b238ffa59db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5971929670340704847
-    second: Ice Bow Set_0
+      213: -2823866067910831176
+    second: Ice Bow Set 1_0
   - first:
-      213: 8842546874161340624
-    second: Ice Bow Set_1
+      213: -6132263867208669195
+    second: Ice Bow Set 1_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ice Bow Set_0
+      name: Ice Bow Set 1_0
       rect:
         serializedVersion: 2
-        x: 83
-        y: 35
-        width: 307
-        height: 989
+        x: 35
+        y: 354
+        width: 989
+        height: 307
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4af540056e80e250800000000000000
-      internalID: 5971929670340704847
+      spriteID: 8b355e0d5cc9fc8d0800000000000000
+      internalID: -2823866067910831176
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice Bow Set_1
+      name: Ice Bow Set 1_1
       rect:
         serializedVersion: 2
-        x: 523
-        y: 227
-        width: 100
-        height: 642
+        x: 227
+        y: 121
+        width: 642
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0d0a020488907ba70800000000000000
-      internalID: 8842546874161340624
+      spriteID: 5f7601eb082d5eaa0800000000000000
+      internalID: -6132263867208669195
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 56ba89a001bc5fe47b51e75277b7d69a
+    spriteID: 4224efe2baad03b48b1986bbb15633c3
     internalID: 0
     vertices: []
     indices: 
@@ -162,8 +162,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ice Bow Set_0: 5971929670340704847
-      Ice Bow Set_1: 8842546874161340624
+      Ice Bow Set 1_0: -2823866067910831176
+      Ice Bow Set 1_1: -6132263867208669195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

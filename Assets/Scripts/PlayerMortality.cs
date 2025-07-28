@@ -8,11 +8,13 @@ public class PlayerMortality : MonoBehaviour
     bool isAlive = true;
     bool bounced = false;
     Rigidbody2D myRigidbody2D;
+    PlayerRespawn playerRespawn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        playerRespawn = FindFirstObjectByType<PlayerRespawn>();
     }
 
     // Update is called once per frame
@@ -24,16 +26,20 @@ public class PlayerMortality : MonoBehaviour
 
             if (timeExit <= 0)
             {
+                playerRespawn.isActiveRespawn = true;
                 Destroy(gameObject);
-                return;
             }
-            if (bounced)
-            {
-                foreach(Collider2D collider in GetComponents<Collider2D>())
-                {
-                    collider.isTrigger = true;
-                }
-            }
+
+            if (bounced) { SetColliderTrigger(true); }
+        }
+
+    }
+
+    void SetColliderTrigger(bool trigger)
+    {
+        foreach (Collider2D collider in GetComponents<Collider2D>())
+        {
+            collider.isTrigger = trigger;
         }
     }
 

@@ -15,7 +15,7 @@ public class ArrowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        arrowRigidbody.linearVelocityX = transform.localScale.y * arrowSpeed;
+        arrowRigidbody.linearVelocityX = transform.localScale.x * arrowSpeed;
     }
 
     void OnCollisionEnter2D(Collision2D other)

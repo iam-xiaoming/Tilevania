@@ -234,9 +234,4 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetTrigger("isDead");
         }
     }
-
-    public Vector3 GetLocalScale()
-    {
-        return gameObject.transform.localScale;
-    }
 } 

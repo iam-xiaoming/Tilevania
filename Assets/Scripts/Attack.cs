@@ -6,23 +6,22 @@ public class Attack : MonoBehaviour
     [SerializeField] Transform gun;
     [SerializeField] GameObject arrow;
     PlayerMortality playerMortality;
-    PlayerMovement playerMovement;
 
     void Awake()
     {
         playerMortality = GetComponent<PlayerMortality>();
-        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void OnFire(InputValue value)
     {
         if (!playerMortality.IsAlive) { return; }
+
         GameObject newArrow = Instantiate(arrow, gun.position, arrow.transform.rotation);
 
         Vector3 localScale = newArrow.transform.localScale;
-        Vector3 playerLocalScale = playerMovement.GetLocalScale();
+        Vector3 playerLocalScale = transform.localScale;
 
-        localScale.y = playerLocalScale.x;
+        localScale.x = playerLocalScale.x;
         newArrow.transform.localScale = localScale;
     }
 }
