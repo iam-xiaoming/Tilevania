@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int maxJumps = 2;
     [SerializeField] CompositeCollider2D waterCollider;
     [SerializeField] float underWaterSpeed = 2f;
-    [SerializeField] TimeCounter timeOnWaterCounter;
     #endregion
 
     #region State Tracking
@@ -30,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     CapsuleCollider2D myBodyCollider2D;
     BoxCollider2D myFeetCollider2D;
     PlayerMortality playerMortality;
+    TimeCounter timeOnWaterCounter;
     #endregion
 
     void Awake()
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         myBodyCollider2D = GetComponent<CapsuleCollider2D>();
         myFeetCollider2D = GetComponent<BoxCollider2D>();
         playerMortality = GetComponent<PlayerMortality>();
+        timeOnWaterCounter = FindFirstObjectByType<TimeCounter>();
         gravityScaleAtStart = playerRigidbody.gravityScale;
     }
 
@@ -232,6 +233,8 @@ public class PlayerMovement : MonoBehaviour
         if (!playerMortality.IsAlive)
         {
             playerAnimator.SetTrigger("isDead");
+
+            FindFirstObjectByType<GameSession>().ProcessPlayerDeath();
         }
     }
 } 

@@ -259,9 +259,8 @@ MonoBehaviour:
   jumpSpeed: 8.5
   climbSpeed: 5
   maxJumps: 2
-  waterCollider: {fileID: 0}
+  waterCollider: {fileID: 6852633544621681238, guid: 8ab06a9f9eccede4296eadc8ffb5c2d2, type: 3}
   underWaterSpeed: 2
-  timeOnWaterCounter: {fileID: 0}
 --- !u!61 &5373711684698314059
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -323,8 +322,6 @@ MonoBehaviour:
   deadKickSpeed: 7
   deadBouncing: 0.5
   timeExit: 2
-  player: {fileID: 6657079993276077659}
-  timeRespawn: 5
 --- !u!114 &4326726272703798273
 MonoBehaviour:
   m_ObjectHideFlags: 0

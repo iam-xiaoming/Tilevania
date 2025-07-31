@@ -40,6 +40,11 @@ public class EnemyMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Arrow"))
+        {
+            Destroy(gameObject);
+        }
+
         if (other.gameObject.layer != LayerMask.NameToLayer("Player"))
         {
             Flip();   

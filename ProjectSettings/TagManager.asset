@@ -18,7 +18,7 @@ TagManager:
   - Enemies
   - Hazard
   - Arrow
-  - 
+  - Interactable
   - 
   - 
   - 
@@ -56,8 +56,14 @@ TagManager:
   - name: Enimes
     uniqueID: 1500367143
     locked: 0
+  - name: Exit Portal
+    uniqueID: 3377708663
+    locked: 0
   - name: Player
     uniqueID: 1312645625
+    locked: 0
+  - name: Coin
+    uniqueID: 853349733
     locked: 0
   - name: Arrow
     uniqueID: 1583343207

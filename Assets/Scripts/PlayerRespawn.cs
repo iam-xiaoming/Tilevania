@@ -1,6 +1,5 @@
 using UnityEngine;
 using Cinemachine;
-using System;
 
 public class PlayerRespawn : MonoBehaviour
 {
@@ -32,6 +31,16 @@ public class PlayerRespawn : MonoBehaviour
                 foreach (CinemachineVirtualCamera cam in cams)
                 {
                     cam.Follow = newPlayer.transform;
+                }
+
+                CinemachineStateDrivenCamera sdc = FindFirstObjectByType<CinemachineStateDrivenCamera>();
+                if (sdc != null)
+                {
+                    Animator newAnimator = newPlayer.GetComponent<Animator>();
+                    if (newAnimator != null)
+                    {
+                        sdc.m_AnimatedTarget = newAnimator;
+                    }
                 }
             }
         }
