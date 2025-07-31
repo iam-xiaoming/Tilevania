@@ -3,12 +3,6 @@ using UnityEngine;
 public class CoinPickup : MonoBehaviour
 {
     [SerializeField] AudioClip coinPickupSFX;
-    GameSession gameSession;
-
-    void Start()
-    {
-        gameSession = FindFirstObjectByType<GameSession>();
-    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,7 +16,7 @@ public class CoinPickup : MonoBehaviour
 
         Destroy(tempGO, coinPickupSFX.length);
 
-        gameSession.UpdateScoreText();
+        FindFirstObjectByType<GameSession>().UpdateScoreText();
 
         Destroy(gameObject);
 

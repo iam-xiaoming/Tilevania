@@ -12,7 +12,7 @@ public class ScenePersist : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject); // Don't destroy object when load scene. It will maintain scores,... you already have.
+            DontDestroyOnLoad(gameObject);
         }
     }
 

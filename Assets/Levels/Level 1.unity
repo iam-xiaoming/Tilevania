@@ -2820,7 +2820,19 @@ PrefabInstance:
       value: Scene Persist
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3653069672595566242, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 4351642417029052514, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 463372451477674698, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 1288121985324421868, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 8366959625987769894, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 3079845552356065040, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 7299381185565230419, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 1108828228773584066, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 8853044605885223127, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 3488844742033497178, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 4884096866376808481, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
+    - {fileID: 1963342838226609316, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d77d435313bb548996ed6812f8fb1b, type: 3}
